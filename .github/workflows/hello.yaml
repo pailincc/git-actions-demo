@@ -8,6 +8,8 @@ on:
         branches: [main] 
     repository_dispatch:
         types: ["on-demand-test"]
+env:
+    APP_NAME: "DEMO_APP"
 
 jobs:
   echo-vars:
@@ -18,10 +20,13 @@ jobs:
      - name: Echo Github Variable
        env:
          APP_VERSION: "2.34.5"
+         RUNNER_CONTEXT: ${{ toJson(runner) }}
        run: |
          echo "This job trigger by ${{ github.event_name }}";
          echo "This repository is ${{ github.repository }}";
-         echo "This branch is ${{ github.ref_name }}"
+         echo "This branch is ${{ github.ref_name }}";
+         echo "This is a ${{ env.APP_NAME }} version ${{ env.APP_VERSION }}"
+         echo "$RUNNER_CONTEXT"
   hello-job:
     runs-on: ubuntu-latest
     steps:
