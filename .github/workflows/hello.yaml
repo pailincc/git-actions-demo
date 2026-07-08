@@ -29,7 +29,7 @@ jobs:
          echo "$RUNNER_CONTEXT"
          echo "The Database password is ${{ secrets.DB_PASSWORD }}"
   hello-job:
-    if: ${{ github.event_name != 'on-demand-test'}}
+    if: ${{ github.event_name != 'repository_dispatch'}}
     runs-on: ubuntu-latest
     steps:
       - name: Say hello
@@ -39,7 +39,7 @@ jobs:
         run: echo "Client send status = ${{ github.event.client_payload.status }}"
         
   second-job:
-    if: ${{ github.event_name != 'on-demand-test' }}
+    if: ${{ github.event_name != 'repository_dispatch' }}
     runs-on: windows-latest
     needs: hello-job
     steps:
