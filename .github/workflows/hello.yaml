@@ -12,9 +12,13 @@ on:
 
 jobs:
   echo-vars:
+    env:
+      PACKAGE_PATH: '.'
     runs-on: ubuntu-latest
     steps:
      - name: Echo Github Variable
+       env:
+         APP_VERSION: "2.34.5"
        run: |
          echo "This job trigger by ${{ github.event_name }}";
          echo "This repository is ${{ github.repository }}";
