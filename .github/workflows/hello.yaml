@@ -5,8 +5,12 @@ on:
     pull_request:
         branches: [main]
 jobs:
-  say-hello:
+  hello-job:
     runs-on: ubuntu-latest
     steps:
       - name: Say hello
         run: echo "Hello from GitHub Actions!"
+    second-job:
+        runs-on: windows-latest
+        steps:
+            - run: echo "This job is running on ${{ runner.os }}"
