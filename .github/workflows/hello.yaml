@@ -30,7 +30,7 @@ jobs:
          echo "$RUNNER_CONTEXT"
          echo "The Database password is ${{ secrets.DB_PASSWORD }}"
   hello-job:
-    if: ${{ github.event.client_payload.status != 'Completed'}}
+    if: ${{ github.event.client_payload.status == 'Completed'}}
     runs-on: ubuntu-latest
     steps:
       - name: Say hello
