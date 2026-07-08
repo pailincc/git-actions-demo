@@ -5,8 +5,7 @@ on:
         paths-ignore:
             - ".github/workflows/*"
     pull_request:
-        branches: [main]
-        
+        branches: [main] 
     repository_dispatch:
         types: ["on-demand-test"]
 
