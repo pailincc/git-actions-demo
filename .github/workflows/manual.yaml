@@ -1,0 +1,13 @@
+on:
+  workflow_dispatch:
+job:
+  buildId:
+  runs-on: ubutu-latest
+  steps:
+    - name: Checkout source code
+      uses: actions/checkout@7.0.0
+      with:
+        repository: ${{ github.repository }}
+        ref: ${{ github.ref_name }}
+    - name: List files in wirkspaces
+      run: ls ${{ github.workspace }}
