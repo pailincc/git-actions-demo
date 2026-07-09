@@ -2,11 +2,11 @@ on:
   workflow_dispatch:
 
 jobs:
-  buildId:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7.0.0
         with:
           repository: ${{ github.repository }}
           ref: ${{ github.ref_name }}
