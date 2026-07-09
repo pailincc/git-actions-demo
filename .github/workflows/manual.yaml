@@ -12,8 +12,7 @@ on:
         description: 'Run UI testing'
         required: true
         type: boolean
-        default: false
-        
+        default: false        
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -33,8 +32,11 @@ jobs:
           echo "Get result from building process"
           echo "status=success" >> $GITHUB_OUTPUT
   test:
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: UI Tesing
         if: ${{ inputs.run_ui_tests }}
-        run: echo "Run UI Testing Tools in ${{ inputs.environment }} Environment"
+        run: |
+          echo "The build status is ${{ needs.build.outputs.build_status }}"
+          echo "Run UI Testing Tools in ${{ inputs.environment }} Environment"
