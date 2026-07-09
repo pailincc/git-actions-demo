@@ -17,6 +17,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      build_status: ${{ steps.set-status.outputs.status }}
     steps:
       - name: Checkout source code
         uses: actions/checkout@v7.0.0
@@ -25,6 +27,11 @@ jobs:
           ref: ${{ github.ref_name }}
       - name: List files in workspace
         run: ls ${{ github.workspace }}
+      - name: Set an Output status
+        id: set-status
+        run: |
+          echo "Get result from building process"
+          echo "status=success" >> $GITHUB_OUTPUT
   test:
     runs-on: ubuntu-latest
     steps:
